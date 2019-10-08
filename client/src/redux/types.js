@@ -1,0 +1,45 @@
+export const SET_ALERT = 'SET_ALERT';
+export const REMOVE_ALERT = 'REMOVE_ALERT';
+
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
+export const REGISTER_FAIL = 'REGISTER_FAIL';
+
+export const USER_LOADED = 'USER_LOADED';
+
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAIL = 'LOGIN_FAIL';
+
+export const AUTH_ERROR = 'AUTH_ERROR';
+export const LOGOUT = 'LOGOUT';
+
+export const ADD_PRODUCT = 'ADD_PRODUCT';
+export const GET_PRODUCT = 'GET_PRODUCT';
+export const GET_PRODUCTS = 'GET_PRODUCTS';
+export const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
+export const DELETE_PRODUCT = 'DELETE_PRODUCT';
+export const PRODUCT_ERROR = 'PRODUCT_ERROR';
+
+export const GET_USERS = 'GET_USERS';
+export const UPDATE_PROFILE = 'UPDATE_PROFILE';
+
+export const GET_CATEGORY = 'GET_CATEGORY';
+export const GET_CATEGORIES = 'GET_CATEGORIES';
+export const DELETE_CATEGORY = 'DELETE_CATEGORY';
+export const UPDATE_CATEGORY = 'UPDATE_CATEGORY';
+export const CATEGORY_ERROR = 'CATEGORY_ERROR';
+
+export const CREATE_MESSAGE = 'CREATE_MESSAGE';
+export const GET_MESSAGES = 'GET_MESSAGES';
+export const MESSAGE_ERROR = 'MESSAGE_ERROR';
+
+export const DELETE_PROFILE = 'DELETE_PROFILE';
+export const ACCOUNT_DELETED = 'ACCOUNT_DELETED';
+
+
+
+
+
+
+
+
+

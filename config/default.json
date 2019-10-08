@@ -1,0 +1,6 @@
+{
+  "mongoURI": "mongodb+srv://mudassar:mudassar755@invictus-ecom-4aidh.mongodb.net/test?retryWrites=true&w=majority",
+  "secretKey": "user@&#!abc",
+  "adminSecretKey": "adminKey@&#!abc"
+}
+
