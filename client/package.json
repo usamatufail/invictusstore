@@ -38,7 +38,9 @@
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
-    "uuid": "^3.3.3"
+    "uuid": "^3.3.3",
+    "gulp": "^4.0.2",
+    "gulp-append-prepend": "1.0.8"
   },
   "devDependencies": {
     "@babel/cli": "7.5.5",
@@ -48,7 +50,7 @@
     "eslint-config-prettier": "6.0.0",
     "eslint-plugin-prettier": "3.1.0",
     "eslint-plugin-react": "7.14.3",
-    "gulp": "4.0.2",
+    "gulp": "^4.0.2",
     "gulp-append-prepend": "1.0.8",
     "prettier": "1.18.2"
   },
@@ -68,6 +70,9 @@
     "compile-sass": "node-sass src/assets/scss/material-kit-react.scss src/assets/css/material-kit-react.css",
     "minify-sass": "node-sass src/assets/scss/material-kit-react.scss src/assets/css/material-kit-react.min.css --output-style compressed",
     "map-sass": "node-sass src/assets/scss/material-kit-react.scss src/assets/css/material-kit-react.css --source-map true"
+  },
+  "engines": {
+    "node": "10.3.0"
   },
   "proxy": "http://localhost:8080",
   "browserslist": {
