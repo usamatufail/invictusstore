@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 // nodejs library that concatenates classes
 import classNames from "classnames";
@@ -20,14 +20,25 @@ import Parallax from "../../Components/Parallax/Parallax";
 import styles from "./HomePage.styles";
 
 // Sections for this page
-import Categories from "./Sections/ProductSection.component";
+import CategoriesSection from "./Sections/CategoriesSection.component";
 import TeamSection from "./Sections/TeamSection.component";
 import WorkSection from "./Sections/WorkSection.component";
 import Footer from "Components/Footer/Footer";
 
+import { getCategories } from "../../redux/categories/categoryActions";
+
 const useStyles = makeStyles(styles);
 
-const HomePage = ({ auth: { isAuthenticated, user } }) => {
+const HomePage = ({
+  auth: { isAuthenticated, user },
+  getCategories,
+  categories
+}) => {
+  console.log(categories);
+
+  useEffect(() => {
+    getCategories();
+  }, [getCategories]);
   const classes = useStyles();
   return (
     <div>
@@ -66,7 +77,7 @@ const HomePage = ({ auth: { isAuthenticated, user } }) => {
       </Parallax>
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div className={classes.container}>
-          <Categories />
+          <CategoriesSection categories={categories} />
           <TeamSection />
           <WorkSection />
         </div>
@@ -77,10 +88,11 @@ const HomePage = ({ auth: { isAuthenticated, user } }) => {
 };
 
 const mapStateToProps = state => ({
-  auth: state.user
+  auth: state.user,
+  categories: state.categories.categories
 });
 
 export default connect(
   mapStateToProps,
-  null
+  { getCategories }
 )(HomePage);

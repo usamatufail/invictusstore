@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import Alert from "./Components/Alerts/Alert.component";
+import "react-id-swiper/lib/styles/css/swiper.css";
 //Header of app
 import AppHeader from "./Pages/AppHeader.component";
 // pages for this app

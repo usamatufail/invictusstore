@@ -21,7 +21,7 @@ function CategoryCard(props) {
   return (
     <Card className={classes.card}>
       <CardActionArea
-        onClick={() => props.history.push(`${props.match.url}/${props.id}`)}
+        onClick={() => props.history.push(`categories/${props.id}`)}
       >
         <CardMedia
           component="img"
@@ -32,7 +32,7 @@ function CategoryCard(props) {
         <CardContent>
           <Typography gutterBottom variant="h4" component="h2">
             {props.name}
-          </Typography> 
+          </Typography>
           <Divider variant="middle" />
           <Typography variant="body2" color="textSecondary" component="p">
             {props.description}
