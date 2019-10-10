@@ -1,6 +1,4 @@
-import React, {
-  useEffect // , { useEffect }
-} from "react";
+import React, { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import Alert from "./Components/Alerts/Alert.component";
 //Header of app
@@ -43,7 +41,6 @@ const App = () => {
         <Route path="/products" component={ProductsPage} />
         <Route exact path="/checkout" component={CheckoutPage} />
         <PrivateRoute path="/admin" component={Admin} />
-        {/* <Route path="/admin" component={Admin} /> */}
       </Switch>
     </div>
   );

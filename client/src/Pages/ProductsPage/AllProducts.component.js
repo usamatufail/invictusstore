@@ -39,10 +39,10 @@ const Products = ({ getProducts, products: { products } }) => {
           <div className={classes.section}>
             <GridContainer justify="center" spacing={3}>
               {/*Cards for displaying category related product*/}
-              {products.map((data, i) => (
+              {products.map((product, i) => (
                 <GridItem xs={12} sm={4} md={3} lg={3} key={i}>
                   <Fade bottom>
-                    <ProductCard item={data} />
+                    <ProductCard item={product} img={`itemImages/${product.file}`} />
                   </Fade>
                 </GridItem>
               ))}

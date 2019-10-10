@@ -58,10 +58,6 @@ const CategoryList = ({ getCategories, categories }) => {
   );
 };
 
-// const mapStateToProps = createStructuredSelector({
-//   categories: selectCategories,
-// });
-
 const mapStateToProps = state => ({
   categories: state.categories.categories
 });

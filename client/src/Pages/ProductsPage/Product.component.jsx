@@ -51,7 +51,7 @@ function ProductPage({ getProductById, match, product }) {
                 <GridItem md={6} xl={5}>
                   <Fade left>
                     <ProductImage
-                      file={`itemImages/${product.file}`}
+                      file={`../itemImages/${product.file}`}
                     />
                   </Fade>
                 </GridItem>

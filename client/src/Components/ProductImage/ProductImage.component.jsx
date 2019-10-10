@@ -9,7 +9,7 @@ export default class BasicExample extends Component {
       <ReactImageMagnify
         {...{
           smallImage: {
-            alt: "Wristwatch by Ted Baker London",
+            alt: "product",
             width: 261,
             height: 304,
             src: proImage
