@@ -47,7 +47,7 @@ function ProductPage(props) {
                 <GridItem md={6} xl={5}>
                   <Fade left>
                     <ProductImage
-                      file={`http://localhost:8080/itemImages/${product.file}`}
+                      file={product.file}
                     />
                   </Fade>
                 </GridItem>

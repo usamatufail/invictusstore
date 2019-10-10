@@ -42,7 +42,7 @@ function CategoryProducts(props) {
                 ? categoryProducts.map((data, i) => (
                     <GridItem xs={12} sm={4} md={3} lg={3} key={i}>
                       <Fade bottom>
-                        <ProductCard item={data} img={`../../itemImages/${data.file}`} />
+                        <ProductCard item={data}/>
                       </Fade>
                     </GridItem>
                   ))

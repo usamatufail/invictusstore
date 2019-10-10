@@ -74,12 +74,7 @@ function Summary(props) {
         {cartItems.map((item, i) => (
           <React.Fragment key={i}>
             <Grid item xs={2} style={{ marginBottom: "15px" }}>
-              <img
-                src={`http://localhost:8080/itemImages/${item.file}`}
-                width="100px"
-                height="118px"
-                alt="product"
-              />
+              <img src={item.file} width="100px" height="118px" alt="product" />
             </Grid>
             <Grid item xs={3} style={{ marginBottom: "15px" }}>
               <Typography variant="body1">{item.title}</Typography>

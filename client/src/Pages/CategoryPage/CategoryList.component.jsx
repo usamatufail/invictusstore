@@ -43,7 +43,7 @@ const CategoryList = ({ getCategories, categories }) => {
                       <CategoryCard
                         id={category._id}
                         name={category.name}
-                        imageUrl={`collectionImages/${category.file}`}
+                        imageUrl={category.file}
                         description={`we have best ${category.name} collections ready for your latest styles`}
                       />
                     </Fade>

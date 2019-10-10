@@ -3,25 +3,27 @@ const router = express.Router();
 const multer = require("multer");
 const { check, validationResult } = require("express-validator");
 const path = require("path");
+const cloudinary = require("cloudinary");
 const Product = require("../../models/Products");
 const Category = require("../../models/Categories");
 const auth = require("../../middleware/auth");
 const Permession = require("../../middleware/permission");
+require("../../cloudinaryConfig");
 
 //@route   POST api/product/add
 //@desc    Add Product
 //@access  Private
 
-const storage = multer.diskStorage({
-  destination: function(req, file, next) {
-    next(null, path.join(__dirname, "../../uploads/itemImages"));
-  },
-  filename: function(req, file, next) {
-    next(null, file.originalname);
-  }
-});
+// const storage = multer.diskStorage({
+//   destination: function(req, file, next) {
+//     next(null, path.join(__dirname, "../../uploads/itemImages"));
+//   },
+//   filename: function(req, file, next) {
+//     next(null, file.originalname);
+//   }
+// });
 
-var upload = multer({ storage: storage }).single("file");
+var upload = multer({ storage: multer.diskStorage({}) }).single("file");
 
 router.post(
   "/add",
@@ -58,7 +60,7 @@ router.post(
       category
     } = req.body;
 
-    const file = req.file;
+    const result = await cloudinary.v2.uploader.upload(req.file.path);
 
     const newProduct = {
       title,
@@ -69,7 +71,7 @@ router.post(
       quantity,
       discountPercentage,
       category,
-      file: file.originalname
+      file: result.secure_url
     };
     try {
       //Create
@@ -111,7 +113,7 @@ router.post(
       category
     } = req.body;
 
-    const file = req.file;
+    const result = await cloudinary.v2.uploader.upload(req.file.path);
 
     //Build Product Object
     const productFields = {};
@@ -123,7 +125,7 @@ router.post(
     productFields.vendor = vendor;
     productFields.quantity = quantity;
     productFields.discountPercentage = discountPercentage;
-    productFields.file = file.originalname;
+    productFields.file = result.secure_url;
     productFields.category = category;
 
     try {
@@ -152,7 +154,7 @@ router.post(
 //@access  Public
 router.get("/all", async (req, res) => {
   try {
-    const allProducts = await Product.find().populate("category");
+    const allProducts = await Product.find();
     res.json(allProducts);
   } catch (err) {
     console.error(err.message);
@@ -183,7 +185,7 @@ router.get("/:category", async (req, res) => {
 router.get("/current/:prodId", async (req, res) => {
   try {
     const Id = req.params.prodId;
-    const product = await Product.findById(Id).populate("category");
+    const product = await Product.findById(Id);
 
     if (!product) {
       res.status(400).json({ msg: "No product found" });

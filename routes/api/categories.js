@@ -4,19 +4,21 @@ const Category = require("../../models/Categories");
 const Product = require("../../models/Products");
 const multer = require("multer");
 const path = require("path");
+const cloudinary = require("cloudinary");
 const { check, validationResult } = require("express-validator");
 const auth = require("../../middleware/auth");
 const Permission = require("../../middleware/permission");
+require("../../cloudinaryConfig");
 
-const storage = multer.diskStorage({
-  destination: function(req, file, next) {
-    next(null, path.join(__dirname, "../../uploads/collectionImages"));
-  },
-  filename: function(req, file, next) {
-    next(null, file.originalname);
-  }
-});
-var upload = multer({ storage: storage }).single("file");
+// const storage = multer.diskStorage({
+//   destination: function(req, file, next) {
+//     next(null, path.join(__dirname, "../../uploads/collectionImages"));
+//   },
+//   filename: function(req, file, next) {
+//     next(null, file.originalname);
+//   }
+// });
+var upload = multer({ storage: multer.diskStorage({}) }).single("file");
 
 //@route   POST api/categories/add
 //@desc    Add Categories
@@ -36,10 +38,10 @@ router.post(
   async (req, res) => {
     try {
       const { name } = req.body;
-      const file = req.file;
+      const result = await cloudinary.v2.uploader.upload(req.file.path);
       const newCategory = {
         name,
-        file: file.originalname
+        file: result.secure_url
       };
       const addCategory = new Category(newCategory);
       await addCategory.save();
@@ -82,14 +84,13 @@ router.post(
       res.status(400).json({ errors: errors.array() });
     }
     const { name } = req.body;
-
-    const file = req.file;
+    const result = await cloudinary.v2.uploader.upload(req.file.path);
 
     //Build Category Object
     const categoryFields = {};
     categoryFields._id = req.params.id;
     categoryFields.name = name;
-    categoryFields.file = file.originalname;
+    categoryFields.file = result.secure_url;
 
     try {
       let category = await Category.findById({ _id: req.params.id });

@@ -50,9 +50,7 @@ function ProductPage({ getProductById, match, product }) {
                 {/*Cards for displaying category related product*/}
                 <GridItem md={6} xl={5}>
                   <Fade left>
-                    <ProductImage
-                      file={`../itemImages/${product.file}`}
-                    />
+                    <ProductImage file={product.file} />
                   </Fade>
                 </GridItem>
                 <GridItem md={6} xl={7}>

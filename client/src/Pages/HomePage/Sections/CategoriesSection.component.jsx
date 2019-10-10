@@ -27,7 +27,7 @@ export default function CategoriesSection(props) {
               <CategoryCard
                 id={category._id}
                 name={category.name}
-                imageUrl={`collectionImages/${category.file}`}
+                imageUrl={category.file}
                 description={`We have best ${category.name} collections ready for your latest styles`}
               />
             </GridItem>

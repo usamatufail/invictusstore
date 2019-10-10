@@ -35,6 +35,7 @@ class Products extends React.PureComponent {
       return returnObject;
     });
     const categoryObject = Object.assign({}, ...categoryArray);
+    console.log(categoryObject);
 
     if (categoryObject) {
       return {
@@ -54,11 +55,7 @@ class Products extends React.PureComponent {
               />
             ),
             render: rowData => (
-              <img
-                src={`../itemImages/${rowData.file}`}
-                style={{ width: 80 }}
-                alt="category"
-              />
+              <img src={rowData.file} style={{ width: 80 }} alt="category" />
             )
           },
           { title: "Price", field: "price" },

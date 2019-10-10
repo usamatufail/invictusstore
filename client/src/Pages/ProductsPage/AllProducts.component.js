@@ -10,7 +10,6 @@ import { connect } from "react-redux";
 // import { selectCategoryProducts } from "../../redux/shop/shop.selectors";
 import { getProducts } from "../../redux/products/productActions";
 
-
 //React library for Reveal effects
 import Fade from "react-reveal";
 
@@ -42,7 +41,7 @@ const Products = ({ getProducts, products: { products } }) => {
               {products.map((product, i) => (
                 <GridItem xs={12} sm={4} md={3} lg={3} key={i}>
                   <Fade bottom>
-                    <ProductCard item={product} img={`itemImages/${product.file}`} />
+                    <ProductCard item={product} img={product.file} />
                   </Fade>
                 </GridItem>
               ))}

@@ -10,7 +10,7 @@ import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
 import { withRouter } from "react-router-dom";
 import AddToCart from "../AddToCartButton/AddToCart.component";
-import { connect } from 'react-redux'
+import { connect } from "react-redux";
 
 // import img from '../../Assets/img/cynthia-del-rio.jpg'
 
@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const ProductCard = (props) => {
+const ProductCard = props => {
   const classes = useStyles();
   const { item } = props;
   const routeName = item._id;
@@ -45,7 +45,7 @@ const ProductCard = (props) => {
           component="img"
           alt="products in invictus e-com store"
           height="200"
-          image={`${props.img}`}
+          image={item.file}
         />
         <CardContent>
           <Typography variant="body1" gutterBottom>
@@ -58,8 +58,6 @@ const ProductCard = (props) => {
       <AddToCart item={item} />
     </Card>
   );
-}
-
-
+};
 
 export default connect()(withRouter(ProductCard));
