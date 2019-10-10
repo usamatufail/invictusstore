@@ -41,16 +41,6 @@ class Products extends React.PureComponent {
         columns: [
           { title: "Title", field: "title" },
           { title: "Description", field: "description" },
-          { title: "Price", field: "price" },
-          { title: "Vendor", field: "vendor" },
-          { title: "Quantity", field: "quantity" },
-          { title: "Discount", field: "discountPercentage" },
-          {
-            title: "Category",
-            field: "category",
-            lookup: categoryObject
-          },
-
           {
             title: "Preview",
             field: "file",
@@ -64,8 +54,21 @@ class Products extends React.PureComponent {
               />
             ),
             render: rowData => (
-              <img src={`http://localhost:8080/itemImages/${rowData.file}`} style={{ width: 80 }} alt="category" />
+              <img
+                src={`../itemImages/${rowData.file}`}
+                style={{ width: 80 }}
+                alt="category"
+              />
             )
+          },
+          { title: "Price", field: "price" },
+          { title: "Vendor", field: "vendor" },
+          { title: "Quantity", field: "quantity" },
+          { title: "Discount", field: "discountPercentage" },
+          {
+            title: "Category",
+            field: "category",
+            lookup: categoryObject
           }
         ],
         data: props.product.products
@@ -79,7 +82,7 @@ class Products extends React.PureComponent {
       <div>
         <GridContainer>
           <GridItem xs={12} sm={12}>
-            {Object.keys(state.columns[6].lookup).length !== 0 && (
+            {Object.keys(state.columns[7].lookup).length !== 0 && (
               <MaterialTable
                 title="All Products"
                 columns={state.columns}

@@ -157,7 +157,7 @@ export const updateProduct = (
 //Delete product
 export const deleteProduct = Id => async dispatch => {
   try {
-    await axios.delete(`/api/product/${Id}`);
+    await axios.delete(`/api/product/current/${Id}`);
 
     dispatch({ type: DELETE_PRODUCT });
 

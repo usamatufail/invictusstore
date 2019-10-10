@@ -43,7 +43,7 @@ class Categories extends React.PureComponent {
           render: rowData => {
             return (
               <img
-                src={`http://localhost:8080/collectionImages/${rowData.file}`}
+                src={`../collectionImages/${rowData.file}`}
                 style={{ width: 80 }}
                 alt="category"
               />

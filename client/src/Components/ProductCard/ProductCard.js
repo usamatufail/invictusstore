@@ -45,7 +45,7 @@ const ProductCard = (props) => {
           component="img"
           alt="products in invictus e-com store"
           height="200"
-          image={`http://localhost:8080/itemImages/${item.file}`}
+          image={`itemImages/${item.file}`}
         />
         <CardContent>
           <Typography variant="body1" gutterBottom>
