@@ -15,14 +15,17 @@ import Badge from "@material-ui/core/Badge";
 // @material-ui/icons
 import { VerifiedUser, Home, Category, Redeem } from "@material-ui/icons";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import SearchIcon from '@material-ui/icons/Search';
 
 // core components
 import CustomDropdown from "../CustomDropdown/CustomDropdown";
 import Button from "../CustomButtons/Button";
 import CartIcon from "../CartIcon/CartIcon.component";
+import InputBase from '@material-ui/core/InputBase';
 
 import { connect } from "react-redux";
 import { logout } from "../../redux/user/userActions";
+import Search from './Search';
 
 import styles from "./headerLinksStyle.js";
 
@@ -79,6 +82,14 @@ const HeaderLinks = ({ auth: { isAuthenticated, loading, user }, logout }) => {
           ]}
         />
       </ListItem>
+       {/*Cart Button */}
+       <ListItem className={classes.listItem}>
+        <Link to="/checkout" className={classes.customNavLink}>
+          <CartIcon />
+        </Link>
+      </ListItem>
+      <Search />
+     
     </Fragment>
   );
 
@@ -126,6 +137,7 @@ const HeaderLinks = ({ auth: { isAuthenticated, loading, user }, logout }) => {
               Sign Up
             </Link>
           ]}
+          
         />
       </ListItem>
       {/*Cart Button */}
@@ -134,11 +146,14 @@ const HeaderLinks = ({ auth: { isAuthenticated, loading, user }, logout }) => {
           <CartIcon />
         </Link>
       </ListItem>
+      {/* <ListItem className={classes.search}> */}
+        <Search />
+           
     </Fragment>
   );
   return (
     <List className={classes.list}>
-      {<Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>}
+      {<Fragment>{!loading && isAuthenticated ? authLinks : guestLinks}</Fragment>}
     </List>
   );
 };

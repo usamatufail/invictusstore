@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect } from "react";
+import React, { useEffect, Fragment } from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // @material-ui/core components
@@ -17,19 +17,24 @@ import GridItem from "../../Components/Grid/GridItem.js";
 
 //Custom Components
 import CategoryCard from "../../Components/CategoryCard/CategoryCard";
+import Spinner from '../../Components/Spinner/Spinner';
+
 
 import styles from "./Category.styles";
 
 const useStyles = makeStyles(styles);
 
-const CategoryList = ({ getCategories, categories }) => {
+const CategoryList = ({ getCategories, categories,  loading  }) => {
   const classes = useStyles();
   useEffect(() => {
     getCategories();
   }, [getCategories]);
 
   return (
-    <div>
+    <Fragment>
+      { loading ? <Spinner /> : <Fragment>
+
+     
       <div className={classNames(classes.main)}>
         <div className={classes.container}>
           <h2 className={classes.title}>Categories</h2>
@@ -43,7 +48,7 @@ const CategoryList = ({ getCategories, categories }) => {
                       <CategoryCard
                         id={category._id}
                         name={category.name}
-                        imageUrl={category.file}
+                        imageUrl={`http://localhost:8080/collectionImages/${category.file}`}
                         description={`we have best ${category.name} collections ready for your latest styles`}
                       />
                     </Fade>
@@ -54,12 +59,18 @@ const CategoryList = ({ getCategories, categories }) => {
           </div>
         </div>
       </div>
-    </div>
+      </Fragment>}
+    </Fragment>
   );
 };
 
+// const mapStateToProps = createStructuredSelector({
+//   categories: selectCategories,
+// });
+
 const mapStateToProps = state => ({
-  categories: state.categories.categories
+  categories: state.categories.categories,
+  laoding: state.categories.loading,
 });
 
 export default connect(

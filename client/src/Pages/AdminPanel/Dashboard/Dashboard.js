@@ -1,5 +1,4 @@
-import React from // , { useEffect }
-"react";
+import React, { useEffect } from "react";
 // react plugin for creating charts
 import ChartistGraph from "react-chartist";
 // @material-ui/core
@@ -28,6 +27,7 @@ import CardHeader from "../../../Components/Card/CardHeader.js";
 import CardIcon from "../../../Components/Card/CardIcon.js";
 import CardBody from "../../../Components/Card/CardBody.js";
 import CardFooter from "../../../Components/Card/CardFooter.js";
+import { Link } from "react-router-dom";
 
 import { bugs, website, server } from "../variables/general.js";
 
@@ -36,27 +36,38 @@ import { emailsSubscriptionChart } from "../variables/charts.js";
 import styles from "../../../Assets/jss/material-dashboard-react/views/dashboardStyle.js";
 // import { connect } from "http2";
 import { connect } from "react-redux";
-import { loadUser } from "../../../redux/user/userActions";
+import { getOrders } from "../../../redux/orderInfo/orderInfo.actions";
+import { getProducts } from "../../../redux/products/productActions";
 
 const useStyles = makeStyles(styles);
 
-const Dashboard = ({ loadUser }) => {
+const Dashboard = ({ getOrders, getProducts, products, order: { orders } }) => {
   const classes = useStyles();
-  // useEffect(() => {
-  //   loadUser();
-  // }, [loadUser])
+  useEffect(() => {
+    getOrders();
+    getProducts();
+  }, [getOrders, getProducts]);
+  let totalSale = 0;
+  if (orders) {
+    orders.map(order => {
+      return order.cartItems.map(
+        item => (totalSale = totalSale + Number(item.price))
+      );
+    });
+  }
+
   return (
     <div>
       <GridContainer>
         <GridItem xs={12} sm={6} md={3}>
           <Card>
-            <CardHeader color="warning" stats icon>
-              <CardIcon color="warning">
+            <CardHeader color="custom" stats icon>
+              <CardIcon color="info">
                 <Icon>content_copy</Icon>
               </CardIcon>
-              <p className={classes.cardCategory}>Used Space</p>
+              <p className={classes.cardCategory}>Total Orders</p>
               <h3 className={classes.cardTitle}>
-                49/50 <small>GB</small>
+                {orders ? `${orders.length}` : "00"}
               </h3>
             </CardHeader>
             <CardFooter stats>
@@ -64,21 +75,23 @@ const Dashboard = ({ loadUser }) => {
                 <Danger>
                   <Warning />
                 </Danger>
-                <a href="#pablo" onClick={e => e.preventDefault()}>
-                  Get more space
-                </a>
+                <Link to="/admin/orders">Check All Orders</Link>
               </div>
             </CardFooter>
           </Card>
         </GridItem>
         <GridItem xs={12} sm={6} md={3}>
           <Card>
-            <CardHeader color="success" stats icon>
-              <CardIcon color="success">
+            <CardHeader color="custom" stats icon>
+              <CardIcon color="info">
                 <Store />
               </CardIcon>
-              <p className={classes.cardCategory}>Revenue</p>
-              <h3 className={classes.cardTitle}>$34,245</h3>
+
+              <p className={classes.cardCategory}>Total Sale</p>
+              <h3 className={classes.cardTitle}>
+                {totalSale ? totalSale : "00.00"}
+                <small>RS</small>
+              </h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
@@ -90,24 +103,26 @@ const Dashboard = ({ loadUser }) => {
         </GridItem>
         <GridItem xs={12} sm={6} md={3}>
           <Card>
-            <CardHeader color="danger" stats icon>
-              <CardIcon color="danger">
+            <CardHeader color="custom" stats icon>
+              <CardIcon color="info">
                 <Icon>info_outline</Icon>
               </CardIcon>
-              <p className={classes.cardCategory}>Fixed Issues</p>
-              <h3 className={classes.cardTitle}>75</h3>
+              <p className={classes.cardCategory}>Total Products</p>
+              <h3 className={classes.cardTitle}>
+                {products ? products.length : "00"}
+              </h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
                 <LocalOffer />
-                Tracked from Github
+                <Link to="/admin/products">Check All Products</Link>
               </div>
             </CardFooter>
           </Card>
         </GridItem>
         <GridItem xs={12} sm={6} md={3}>
           <Card>
-            <CardHeader color="info" stats icon>
+            <CardHeader color="custom" stats icon>
               <CardIcon color="info">
                 <Accessibility />
               </CardIcon>
@@ -124,9 +139,9 @@ const Dashboard = ({ loadUser }) => {
         </GridItem>
       </GridContainer>
       <GridContainer>
-        <GridItem xs={12} sm={12} md={4}>
+        <GridItem xs={12} sm={12} md={12}>
           <Card chart>
-            <CardHeader color="warning">
+            <CardHeader color="chart">
               <ChartistGraph
                 className="ct-chart"
                 data={emailsSubscriptionChart.data}
@@ -137,12 +152,12 @@ const Dashboard = ({ loadUser }) => {
               />
             </CardHeader>
             <CardBody>
-              <h4 className={classes.cardTitle}>Email Subscriptions</h4>
-              <p className={classes.cardCategory}>Last Campaign Performance</p>
+              <h4 className={classes.cardTitle}>Total Sale</h4>
+              <p className={classes.cardCategory}>Last Order Sale</p>
             </CardBody>
             <CardFooter chart>
               <div className={classes.stats}>
-                <AccessTime /> campaign sent 2 days ago
+                <AccessTime /> order delivered 2 days ago
               </div>
             </CardFooter>
           </Card>
@@ -217,7 +232,12 @@ const Dashboard = ({ loadUser }) => {
   );
 };
 
+const mapStateToProps = state => ({
+  order: state.orderInfo,
+  products: state.product.products
+});
+
 export default connect(
-  null,
-  { loadUser }
+  mapStateToProps,
+  { getOrders, getProducts }
 )(Dashboard);

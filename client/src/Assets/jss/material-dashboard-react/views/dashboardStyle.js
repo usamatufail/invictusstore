@@ -35,7 +35,7 @@ const dashboardStyle = theme => ({
     }
   },
   cardCategory: {
-    color: grayColor[0],
+    color: "#C0C0C0",
     margin: "0",
     fontSize: "14px",
     marginTop: "0",
@@ -50,7 +50,7 @@ const dashboardStyle = theme => ({
     marginBottom: "0"
   },
   cardTitle: {
-    color: grayColor[2],
+    color: "#C0C0C0",
     marginTop: "0px",
     minHeight: "auto",
     fontWeight: "300",

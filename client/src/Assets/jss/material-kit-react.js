@@ -1,23 +1,8 @@
 /*!
-
- =========================================================
- * Material Kit React - v1.8.0 based on Material Kit - v2.0.2
- =========================================================
-
- * Product Page: https://www.creative-tim.com/product/material-kit-react
- * Copyright 2019 Creative Tim (https://www.creative-tim.com)
- * Licensed under MIT (https://github.com/creativetimofficial/material-kit-react/blob/master/LICENSE.md)
-
- =========================================================
-
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
- */
-
 // ##############################
 // // // Variables - Styles that are used on more than one component
 // #############################
-
+*/
 const drawerWidth = 260;
 
 const transition = {
@@ -83,7 +68,7 @@ const primaryBoxShadow = {
 };
 const infoBoxShadow = {
   boxShadow:
-    "0 12px 20px -10px rgba(0, 188, 212, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(0, 188, 212, 0.2)"
+  "0px 12px 20px -10px #2d666d, -4px 5px 9px 0px rgba(40, 58, 57, 0.12), -5px 5px 4px -5px #186f79"
 };
 const successBoxShadow = {
   boxShadow:
@@ -119,7 +104,28 @@ const dangerCardHeader = {
 };
 const infoCardHeader = {
   color: "#fff",
-  background: "linear-gradient(60deg, #26c6da, #00acc1)",
+  background: "linear-gradient(60deg, #08bfd2, #276e77)",
+  ...infoBoxShadow
+};
+/* custom cards */
+const chartCardHeader = {
+  color: "#fff",
+  background: "linear-gradient(60deg, rgba(105, 77, 77, 0.87), #324f52)",
+  ...infoBoxShadow
+};
+const orderCardHeader = {
+  color: "#fff",
+  background: "linear-gradient(60deg, #575d00, #1a291b)",
+  ...successBoxShadow
+};
+const saleCardHeader = {
+  color: "#fff",
+  background: "linear-gradient(60deg, #191919, rgba(23, 100, 130, 0.87))",
+  ...dangerBoxShadow
+};
+const customCardHeader = {
+  color: "#fff",
+  background: "linear-gradient(60deg, #4a4848, #1c666f)",
   ...infoBoxShadow
 };
 const primaryCardHeader = {
@@ -205,6 +211,12 @@ export {
   successCardHeader,
   dangerCardHeader,
   infoCardHeader,
+
+  customCardHeader,
+  orderCardHeader,
+  saleCardHeader,
+  chartCardHeader,
+
   primaryCardHeader,
   roseCardHeader,
   cardActions,
