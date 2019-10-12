@@ -23,6 +23,8 @@ import setAuthToken from "./util/setAuthToken";
 
 import PrivateRoute from "./Components/routing/PrivateRoute";
 
+import "./Assets/css/chartist.min.css";
+
 if (localStorage.token) {
   setAuthToken(localStorage.token);
 }

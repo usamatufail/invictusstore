@@ -11,7 +11,9 @@ import { toast } from "react-toastify";
 function AddToCart({ item, addItem, match }) {
   const useStyles = makeStyles(theme => ({
     button:
-      match.path === "/categories/:catId" || match.path === "/products"
+      match.path === "/categories/:catId" ||
+      match.path === "/products" ||
+      match.path === "/"
         ? {
             margin: theme.spacing(1)
           }

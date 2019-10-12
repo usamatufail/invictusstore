@@ -31,7 +31,7 @@ import { Link } from "react-router-dom";
 
 import { bugs, website, server } from "../variables/general.js";
 
-import { emailsSubscriptionChart } from "../variables/charts.js";
+import { monthlySalesChart } from "../variables/charts.js";
 
 import styles from "../../../Assets/jss/material-dashboard-react/views/dashboardStyle.js";
 // import { connect } from "http2";
@@ -144,11 +144,11 @@ const Dashboard = ({ getOrders, getProducts, products, order: { orders } }) => {
             <CardHeader color="chart">
               <ChartistGraph
                 className="ct-chart"
-                data={emailsSubscriptionChart.data}
-                type="Bar"
-                options={emailsSubscriptionChart.options}
-                responsiveOptions={emailsSubscriptionChart.responsiveOptions}
-                listener={emailsSubscriptionChart.animation}
+                data={monthlySalesChart.data}
+                type="Line"
+                options={monthlySalesChart.options}
+                responsiveOptions={monthlySalesChart.responsiveOptions}
+                listener={monthlySalesChart.animation}
               />
             </CardHeader>
             <CardBody>

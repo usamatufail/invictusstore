@@ -30,6 +30,7 @@ import AddToCart from "Components/AddToCartButton/AddToCart.component";
 
 //Redux Functions
 import { getProductById } from "../../redux/products/productActions";
+import Spinner from "Components/Spinner/Spinner";
 
 const useStyles = makeStyles(styles);
 
@@ -110,7 +111,9 @@ function ProductPage({ getProductById, match, product }) {
                 </GridItem>
               </GridContainer>
             </div>
-          ) : null}
+          ) : (
+            <Spinner />
+          )}
         </div>
       </div>
     </div>

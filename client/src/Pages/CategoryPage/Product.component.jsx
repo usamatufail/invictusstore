@@ -22,10 +22,11 @@ import styles from "../ProductsPage/Product.styles";
 
 //core components
 import Button from "../../Components/CustomButtons/Button";
-import AddToCart from "Components/AddToCartButton/AddToCart.component";
+import AddToCart from "../../Components/AddToCartButton/AddToCart.component";
 
 //Redux Functions
 import { getProductById } from "../../redux/products/productActions";
+import Spinner from "../../Components/Spinner/Spinner";
 
 const useStyles = makeStyles(styles);
 
@@ -46,9 +47,7 @@ function ProductPage(props) {
                 {/*Cards for displaying category related product*/}
                 <GridItem md={6} xl={5}>
                   <Fade left>
-                    <ProductImage
-                      file={product.file}
-                    />
+                    <ProductImage file={product.file} />
                   </Fade>
                 </GridItem>
                 <GridItem md={6} xl={7}>
@@ -63,7 +62,9 @@ function ProductPage(props) {
                         </h2>
                       </div>
                       <div className={classes.info}>
-                        <span className={classes.availability}>In Stock: Yes</span>
+                        <span className={classes.availability}>
+                          In Stock: Yes
+                        </span>
                       </div>
                     </div>
 
@@ -106,7 +107,9 @@ function ProductPage(props) {
                 </GridItem>
               </GridContainer>
             </div>
-          ) : null}
+          ) : (
+            <Spinner />
+          )}
         </div>
       </div>
     </div>

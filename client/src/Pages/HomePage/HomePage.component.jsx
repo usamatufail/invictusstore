@@ -21,24 +21,30 @@ import styles from "./HomePage.styles";
 
 // Sections for this page
 import CategoriesSection from "./Sections/CategoriesSection.component";
-import TeamSection from "./Sections/TeamSection.component";
-import WorkSection from "./Sections/WorkSection.component";
+import ProductsSection from "./Sections/ProductsSection.component";
+import ContactSection from "./Sections/ContactSection.component";
 import Footer from "Components/Footer/Footer";
+import BannerSection from "./Sections/BannerSection.component";
 
 import { getCategories } from "../../redux/categories/categoryActions";
+import { getProducts } from "../../redux/products/productActions";
 
 const useStyles = makeStyles(styles);
 
 const HomePage = ({
   auth: { isAuthenticated, user },
   getCategories,
+  getProducts,
+  products,
   categories
 }) => {
   console.log(categories);
+  console.log(products);
 
   useEffect(() => {
     getCategories();
-  }, [getCategories]);
+    getProducts();
+  }, [getCategories, getProducts]);
   const classes = useStyles();
   return (
     <div>
@@ -78,8 +84,9 @@ const HomePage = ({
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div className={classes.container}>
           <CategoriesSection categories={categories} />
-          <TeamSection />
-          <WorkSection />
+          <BannerSection />
+          <ProductsSection products={products} />
+          <ContactSection />
         </div>
       </div>
       <Footer />
@@ -89,10 +96,11 @@ const HomePage = ({
 
 const mapStateToProps = state => ({
   auth: state.user,
-  categories: state.categories.categories
+  categories: state.categories.categories,
+  products: state.product.products
 });
 
 export default connect(
   mapStateToProps,
-  { getCategories }
+  { getCategories, getProducts }
 )(HomePage);

@@ -22,10 +22,11 @@ import GridItem from "../../Components/Grid/GridItem.js";
 import ProductCard from "../../Components/ProductCard/ProductCard";
 
 import styles from "./AllProduct.styles";
+import Spinner from "Components/Spinner/Spinner";
 
 const useStyles = makeStyles(styles);
 
-const Products = ({ getProducts, products: { products } }) => {
+const Products = ({ getProducts, products: { products, loading } }) => {
   const classes = useStyles();
   useEffect(() => {
     getProducts();
@@ -36,16 +37,20 @@ const Products = ({ getProducts, products: { products } }) => {
         <div className={classes.container}>
           <h2 className={classes.title}>{products.productTitle}</h2>
           <div className={classes.section}>
-            <GridContainer justify="center" spacing={3}>
-              {/*Cards for displaying category related product*/}
-              {products.map((product, i) => (
-                <GridItem xs={12} sm={4} md={3} lg={3} key={i}>
-                  <Fade bottom>
-                    <ProductCard item={product} img={product.file} />
-                  </Fade>
-                </GridItem>
-              ))}
-            </GridContainer>
+            {loading ? (
+              <Spinner />
+            ) : (
+              <GridContainer justify="center" spacing={3}>
+                {/*Cards for displaying category related product*/}
+                {products.map((product, i) => (
+                  <GridItem xs={12} sm={4} md={3} lg={3} key={i}>
+                    <Fade bottom>
+                      <ProductCard item={product} img={product.file} />
+                    </Fade>
+                  </GridItem>
+                ))}
+              </GridContainer>
+            )}
           </div>
         </div>
       </div>

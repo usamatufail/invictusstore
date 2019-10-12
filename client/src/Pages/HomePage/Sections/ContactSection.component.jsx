@@ -17,29 +17,29 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import Email from "@material-ui/icons/Email";
 
-import { connect } from 'react-redux'
-import { createMessage } from '../../../redux/contact/contactAction'
+import { connect } from "react-redux";
+import { createMessage } from "../../../redux/contact/contactAction";
 
-import styles from "./WorkSection.styles";
+import styles from "./ContactSection.styles";
 
 const useStyles = makeStyles(styles);
 
 const WorkSection = ({ createMessage }) => {
   const classes = useStyles();
   const [formData, setFormData] = useState({
-    name:'',
-    email:'',
-    message:''
+    name: "",
+    email: "",
+    message: ""
   });
-const { name, email, message } = formData;
-const handleChange = prop => event => {
-  setFormData({ ...formData, [prop]: event.target.value });
-};
+  const { name, email, message } = formData;
+  const handleChange = prop => event => {
+    setFormData({ ...formData, [prop]: event.target.value });
+  };
 
   const handleSubmit = e => {
     e.preventDefault();
-createMessage(formData);
-  }
+    createMessage(formData);
+  };
   return (
     <div className={classes.section}>
       <GridContainer justify="center">
@@ -52,7 +52,7 @@ createMessage(formData);
             hours.
           </h4>
           <Fade bottom>
-            <form onSubmit = {e => handleSubmit(e)}>
+            <form onSubmit={e => handleSubmit(e)}>
               <GridContainer>
                 <GridItem xs={12} sm={12} md={6}>
                   <TextField
@@ -78,7 +78,7 @@ createMessage(formData);
                     label="Your Email"
                     id="email"
                     name="email"
-                    value={ email }
+                    value={email}
                     onChange={handleChange("email")}
                     formcontrolprops={{
                       fullWidth: true
@@ -93,21 +93,21 @@ createMessage(formData);
                   />
                 </GridItem>
                 <GridItem xs={12} sm={12} md={6}>
-                <TextField
-                  label="Your Message"
-                  id="message"
-                  name="message"
-                  value={ message }
-                  onChange={handleChange("message")}
-                  formcontrolprops={{
-                    fullWidth: true,
-                    className: classes.textArea
-                  }}
-                  inputProps={{
-                    multiline: true,
-                    rows: 10
-                  }}
-                />
+                  <TextField
+                    label="Your Message"
+                    id="message"
+                    name="message"
+                    value={message}
+                    onChange={handleChange("message")}
+                    formcontrolprops={{
+                      fullWidth: true,
+                      className: classes.textArea
+                    }}
+                    inputProps={{
+                      multiline: true,
+                      rows: 10
+                    }}
+                  />
                 </GridItem>
                 <GridContainer justify="center">
                   <GridItem
@@ -116,7 +116,9 @@ createMessage(formData);
                     md={4}
                     className={classes.textCenter}
                   >
-                    <Button color="primary" type="submit">Send Message</Button>
+                    <Button color="primary" type="submit">
+                      Send Message
+                    </Button>
                   </GridItem>
                 </GridContainer>
               </GridContainer>
@@ -126,6 +128,9 @@ createMessage(formData);
       </GridContainer>
     </div>
   );
-}
+};
 
-export default connect(null, { createMessage })(WorkSection)
+export default connect(
+  null,
+  { createMessage }
+)(WorkSection);

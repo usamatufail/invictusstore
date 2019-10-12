@@ -21,11 +21,12 @@ import ProductCard from "../../Components/ProductCard/ProductCard";
 import { getProductsByCategories } from "../../redux/products/productActions.js";
 
 import styles from "./Category.styles";
+import Spinner from "Components/Spinner/Spinner.js";
 
 const useStyles = makeStyles(styles);
 
 function CategoryProducts(props) {
-  const { categoryProducts } = props;
+  const { categoryProducts, loading } = props;
   useEffect(() => {
     props.getProductsByCategories(props.match.params.catId);
   }, [getProductsByCategories]);
@@ -37,17 +38,21 @@ function CategoryProducts(props) {
         <div className={classes.container}>
           <h2 className={classes.title}>{categoryProducts.title}</h2>
           <div className={classes.section}>
-            <GridContainer justify="center" spacing={3}>
-              {categoryProducts
-                ? categoryProducts.map((data, i) => (
-                    <GridItem xs={12} sm={4} md={3} lg={3} key={i}>
-                      <Fade bottom>
-                        <ProductCard item={data}/>
-                      </Fade>
-                    </GridItem>
-                  ))
-                : null}
-            </GridContainer>
+            {loading ? (
+              <Spinner />
+            ) : (
+              <GridContainer justify="center" spacing={3}>
+                {categoryProducts
+                  ? categoryProducts.map((data, i) => (
+                      <GridItem xs={12} sm={4} md={3} lg={3} key={i}>
+                        <Fade bottom>
+                          <ProductCard item={data} />
+                        </Fade>
+                      </GridItem>
+                    ))
+                  : null}
+              </GridContainer>
+            )}
           </div>
         </div>
       </div>
@@ -58,7 +63,8 @@ function CategoryProducts(props) {
 const mapStateToProps = state => {
   // debugger;
   return {
-    categoryProducts: state.product.products
+    categoryProducts: state.product.products,
+    loading: state.product.loading
   };
 };
 
